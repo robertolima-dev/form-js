@@ -1,4 +1,15 @@
-const form = document.querySelector('.first__form');
+const form = document.querySelector('form');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  fetch('http://localhost:5500/form-js/cadastrou.json').then((res) => {
+    const answer = res.json();
+    return answer
+  }).then(answer => {
+    console.log(answer)
+    document.body.innerHTML = `<p>${answer.success}</p>`
+  })
+})
 
 // function cadastrar() {
 //   var _nome = document.getElementById('nome').value;
@@ -6,7 +17,6 @@ const form = document.querySelector('.first__form');
 //   var _telefone = document.getElementById('telefone').value;
 //   var _senha = document.getElementById('senha').value;
 
-//   console.log(_nome + _email + _telefone + _senha);
 
 //   var aluno = {
 //     nome: _nome,
@@ -18,7 +28,3 @@ const form = document.querySelector('.first__form');
 //   console.log(aluno);
 // }
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  console.log('oi')
-})
