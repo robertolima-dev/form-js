@@ -1,12 +1,16 @@
+// Getting main elements
 const form = document.querySelector('form');
 const main = document.querySelector('main')
 const userName = document.querySelector('[name="nome"]');
 const userEmail = document.querySelector('[name="email"]');
 const userPhone = document.querySelector('[name="telefone"]');
 const userPassword = document.querySelector('[name="senha"]');
+
+// Listening to submit event
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const formIsFulfilled = userName.value && userEmail.value && userPhone.value && userPassword.value
+  //if all fields are filled, then the form is valid
   if (formIsFulfilled) {
     fetch('http://localhost:5500/form-js/cadastrou.json').then((res) => {
       const answer = res.json();
