@@ -9,7 +9,18 @@ const userPassword = document.querySelector('[name="senha"]');
 // Listening to submit event
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  const formIsFulfilled = userName.value && userEmail.value && userPhone.value && userPassword.value
+  const userNameValue = userName.value
+  const userNameTest = /^[A-Z][a-z].* [A-Z][a-z].*$/g.test(userNameValue);
+  const userEmailValue = userEmail.value
+  const userEmailTest = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(userEmailValue);
+
+  const userPhoneValue = userPhone.value
+  const userPhoneTest = /^\(\d{2,}\) \d{4,}\d{4}$/.test(userPhoneValue);
+  const userPasswordValue = userPassword.value
+  const userPasswordTest = /[(?=\W_)(?=\S).]/g.test(userPasswordValue);
+  const formIsFulfilled = userNameTest && userEmailTest && userPhoneTest && userPasswordTest
+
+
   //if all fields are filled, then the form is valid
   if (formIsFulfilled) {
     fetch('http://localhost:5500/form-js/cadastrou.json').then((res) => {
@@ -24,21 +35,3 @@ form.addEventListener('submit', (e) => {
   }
 
 })
-
-// function cadastrar() {
-//   var _nome = document.getElementById('nome').value;
-//   var _email = document.getElementById('email').value;
-//   var _telefone = document.getElementById('telefone').value;
-//   var _senha = document.getElementById('senha').value;
-
-
-//   var aluno = {
-//     nome: _nome,
-//     email: _email,
-//     telefone: _telefone,
-//     senha: _senha
-//   }
-
-//   console.log(aluno);
-// }
-
